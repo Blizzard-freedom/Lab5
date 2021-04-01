@@ -32,7 +32,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define CAPTURENUM 16
+#define CAPTURENUM 32
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/

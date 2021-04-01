@@ -21,9 +21,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   8 .data         0000000c  20000000  080044a8  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          0000022c  20000010  080044b4  00020010  2**3
+  9 .bss          000002ac  20000010  080044b4  00020010  2**3
                   ALLOC
- 10 ._user_heap_stack 00000604  2000023c  080044b4  0002023c  2**0
+ 10 ._user_heap_stack 00000604  200002bc  080044b4  000202bc  2**0
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0002000c  2**0
                   CONTENTS, READONLY
@@ -1079,7 +1079,7 @@ int main(void)
  8000d42:	482c      	ldr	r0, [pc, #176]	; (8000df4 <main+0xdc>)
  8000d44:	f002 f829 	bl	8002d9a <HAL_TIM_Base_Start>
     	HAL_TIM_IC_Start_DMA(&htim2, TIM_CHANNEL_1, (uint32_t*) &capturedata,CAPTURENUM);
- 8000d48:	2310      	movs	r3, #16
+ 8000d48:	2320      	movs	r3, #32
  8000d4a:	4a2b      	ldr	r2, [pc, #172]	; (8000df8 <main+0xe0>)
  8000d4c:	2100      	movs	r1, #0
  8000d4e:	4829      	ldr	r0, [pc, #164]	; (8000df4 <main+0xdc>)
@@ -1155,15 +1155,15 @@ int main(void)
  8000de4:	f3af 8000 	nop.w
  8000de8:	a0b5ed8d 	.word	0xa0b5ed8d
  8000dec:	3eb0c6f7 	.word	0x3eb0c6f7
- 8000df0:	20000118 	.word	0x20000118
- 8000df4:	200001b8 	.word	0x200001b8
+ 8000df0:	20000198 	.word	0x20000198
+ 8000df4:	20000238 	.word	0x20000238
  8000df8:	2000002c 	.word	0x2000002c
  8000dfc:	000186a0 	.word	0x000186a0
  8000e00:	40020000 	.word	0x40020000
- 8000e04:	200000a8 	.word	0x200000a8
+ 8000e04:	20000128 	.word	0x20000128
  8000e08:	40880000 	.word	0x40880000
  8000e0c:	404e0000 	.word	0x404e0000
- 8000e10:	200000ac 	.word	0x200000ac
+ 8000e10:	2000012c 	.word	0x2000012c
 
 08000e14 <SystemClock_Config>:
 /**
@@ -1448,7 +1448,7 @@ static void MX_TIM2_Init(void)
  8000fba:	46bd      	mov	sp, r7
  8000fbc:	bd80      	pop	{r7, pc}
  8000fbe:	bf00      	nop
- 8000fc0:	200001b8 	.word	0x200001b8
+ 8000fc0:	20000238 	.word	0x20000238
 
 08000fc4 <MX_TIM5_Init>:
   * @brief TIM5 Initialization Function
@@ -1599,7 +1599,7 @@ static void MX_TIM5_Init(void)
  8001096:	3728      	adds	r7, #40	; 0x28
  8001098:	46bd      	mov	sp, r7
  800109a:	bd80      	pop	{r7, pc}
- 800109c:	20000118 	.word	0x20000118
+ 800109c:	20000198 	.word	0x20000198
  80010a0:	40000c00 	.word	0x40000c00
 
 080010a4 <MX_USART2_UART_Init>:
@@ -1666,7 +1666,7 @@ static void MX_USART2_UART_Init(void)
  80010ea:	bf00      	nop
  80010ec:	bd80      	pop	{r7, pc}
  80010ee:	bf00      	nop
- 80010f0:	200001f8 	.word	0x200001f8
+ 80010f0:	20000278 	.word	0x20000278
  80010f4:	40004400 	.word	0x40004400
 
 080010f8 <MX_DMA_Init>:
@@ -1862,7 +1862,7 @@ void encoderSpeedReaderCycle() {
  8001230:	6a5b      	ldr	r3, [r3, #36]	; 0x24
  8001232:	681b      	ldr	r3, [r3, #0]
  8001234:	685b      	ldr	r3, [r3, #4]
- 8001236:	f1c3 0310 	rsb	r3, r3, #16
+ 8001236:	f1c3 0320 	rsb	r3, r3, #32
  800123a:	603b      	str	r3, [r7, #0]
 	uint32_t sum = 0 ;
  800123c:	2300      	movs	r3, #0
@@ -1878,13 +1878,13 @@ void encoderSpeedReaderCycle() {
  8001246:	683b      	ldr	r3, [r7, #0]
  8001248:	4413      	add	r3, r2
  800124a:	3301      	adds	r3, #1
- 800124c:	f003 030f 	and.w	r3, r3, #15
+ 800124c:	f003 031f 	and.w	r3, r3, #31
  8001250:	4a1c      	ldr	r2, [pc, #112]	; (80012c4 <encoderSpeedReaderCycle+0x9c>)
  8001252:	f852 2023 	ldr.w	r2, [r2, r3, lsl #2]
  8001256:	4621      	mov	r1, r4
  8001258:	683b      	ldr	r3, [r7, #0]
  800125a:	440b      	add	r3, r1
- 800125c:	f003 030f 	and.w	r3, r3, #15
+ 800125c:	f003 031f 	and.w	r3, r3, #31
  8001260:	4918      	ldr	r1, [pc, #96]	; (80012c4 <encoderSpeedReaderCycle+0x9c>)
  8001262:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
  8001266:	1ad3      	subs	r3, r2, r3
@@ -1916,7 +1916,7 @@ void encoderSpeedReaderCycle() {
  8001296:	607b      	str	r3, [r7, #4]
 	for(register int i=0 ;i < CAPTURENUM-1;i++)
  8001298:	3401      	adds	r4, #1
- 800129a:	2c0e      	cmp	r4, #14
+ 800129a:	2c1e      	cmp	r4, #30
  800129c:	ddd2      	ble.n	8001244 <encoderSpeedReaderCycle+0x1c>
 	}
 
@@ -1925,7 +1925,7 @@ void encoderSpeedReaderCycle() {
  800129e:	687b      	ldr	r3, [r7, #4]
  80012a0:	ee07 3a90 	vmov	s15, r3
  80012a4:	eeb8 7a67 	vcvt.f32.u32	s14, s15
- 80012a8:	eef2 6a0e 	vmov.f32	s13, #46	; 0x41700000  15.0
+ 80012a8:	eef3 6a0f 	vmov.f32	s13, #63	; 0x41f80000  31.0
  80012ac:	eec7 7a26 	vdiv.f32	s15, s14, s13
  80012b0:	4b06      	ldr	r3, [pc, #24]	; (80012cc <encoderSpeedReaderCycle+0xa4>)
  80012b2:	edc3 7a00 	vstr	s15, [r3]
@@ -1935,10 +1935,10 @@ void encoderSpeedReaderCycle() {
  80012ba:	46bd      	mov	sp, r7
  80012bc:	bc90      	pop	{r4, r7}
  80012be:	4770      	bx	lr
- 80012c0:	200001b8 	.word	0x200001b8
+ 80012c0:	20000238 	.word	0x20000238
  80012c4:	2000002c 	.word	0x2000002c
- 80012c8:	2000006c 	.word	0x2000006c
- 80012cc:	200000a8 	.word	0x200000a8
+ 80012c8:	200000ac 	.word	0x200000ac
+ 80012cc:	20000128 	.word	0x20000128
 
 080012d0 <micros>:
 
@@ -1962,8 +1962,8 @@ uint64_t micros()
  80012f4:	46bd      	mov	sp, r7
  80012f6:	e8bd 0890 	ldmia.w	sp!, {r4, r7, fp}
  80012fa:	4770      	bx	lr
- 80012fc:	20000118 	.word	0x20000118
- 8001300:	200000b0 	.word	0x200000b0
+ 80012fc:	20000198 	.word	0x20000198
+ 8001300:	20000130 	.word	0x20000130
 
 08001304 <HAL_TIM_PeriodElapsedCallback>:
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
@@ -1993,8 +1993,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
  800132e:	bc90      	pop	{r4, r7}
  8001330:	4770      	bx	lr
  8001332:	bf00      	nop
- 8001334:	20000118 	.word	0x20000118
- 8001338:	200000b0 	.word	0x200000b0
+ 8001334:	20000198 	.word	0x20000198
+ 8001338:	20000130 	.word	0x20000130
 
 0800133c <Error_Handler>:
 /**
@@ -2353,10 +2353,10 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
  800155e:	bd80      	pop	{r7, pc}
  8001560:	40023800 	.word	0x40023800
  8001564:	40020000 	.word	0x40020000
- 8001568:	200000b8 	.word	0x200000b8
+ 8001568:	20000138 	.word	0x20000138
  800156c:	40026088 	.word	0x40026088
  8001570:	40000c00 	.word	0x40000c00
- 8001574:	20000158 	.word	0x20000158
+ 8001574:	200001d8 	.word	0x200001d8
  8001578:	40026040 	.word	0x40026040
 
 0800157c <HAL_UART_MspInit>:
@@ -2634,7 +2634,7 @@ void DMA1_Stream2_IRQHandler(void)
  800166a:	bf00      	nop
  800166c:	bd80      	pop	{r7, pc}
  800166e:	bf00      	nop
- 8001670:	20000158 	.word	0x20000158
+ 8001670:	200001d8 	.word	0x200001d8
 
 08001674 <DMA1_Stream5_IRQHandler>:
 
@@ -2658,7 +2658,7 @@ void DMA1_Stream5_IRQHandler(void)
  800167e:	bf00      	nop
  8001680:	bd80      	pop	{r7, pc}
  8001682:	bf00      	nop
- 8001684:	200000b8 	.word	0x200000b8
+ 8001684:	20000138 	.word	0x20000138
 
 08001688 <TIM2_IRQHandler>:
 
@@ -2682,7 +2682,7 @@ void TIM2_IRQHandler(void)
  8001692:	bf00      	nop
  8001694:	bd80      	pop	{r7, pc}
  8001696:	bf00      	nop
- 8001698:	200001b8 	.word	0x200001b8
+ 8001698:	20000238 	.word	0x20000238
 
 0800169c <TIM5_IRQHandler>:
 
@@ -2706,7 +2706,7 @@ void TIM5_IRQHandler(void)
  80016a6:	bf00      	nop
  80016a8:	bd80      	pop	{r7, pc}
  80016aa:	bf00      	nop
- 80016ac:	20000118 	.word	0x20000118
+ 80016ac:	20000198 	.word	0x20000198
 
 080016b0 <SystemInit>:
   *         configuration.
@@ -2828,7 +2828,7 @@ LoopFillZerobss:
   ldr  r2, =_sbss
  8001724:	20000010 	.word	0x20000010
   ldr  r3, = _ebss
- 8001728:	2000023c 	.word	0x2000023c
+ 8001728:	200002bc 	.word	0x200002bc
 
 0800172c <ADC_IRQHandler>:
  * @retval None       
@@ -2991,7 +2991,7 @@ __weak void HAL_IncTick(void)
  80017f0:	4770      	bx	lr
  80017f2:	bf00      	nop
  80017f4:	20000008 	.word	0x20000008
- 80017f8:	20000238 	.word	0x20000238
+ 80017f8:	200002b8 	.word	0x200002b8
 
 080017fc <HAL_GetTick>:
   * @note This function is declared as __weak to be overwritten in case of other 
@@ -3011,7 +3011,7 @@ __weak uint32_t HAL_GetTick(void)
  8001808:	f85d 7b04 	ldr.w	r7, [sp], #4
  800180c:	4770      	bx	lr
  800180e:	bf00      	nop
- 8001810:	20000238 	.word	0x20000238
+ 8001810:	200002b8 	.word	0x200002b8
 
 08001814 <__NVIC_SetPriorityGrouping>:
            In case of a conflict between priority grouping and available
