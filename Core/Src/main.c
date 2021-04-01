@@ -132,7 +132,7 @@ int main(void)
 	 	  			timestamp = micros();
 	 	  			HAL_GPIO_TogglePin(LD2_GPIO_Port,LD2_Pin);
 	 	  		}
-	 	  speed = 60/(MeanTime*0.000001*768) ;
+	 	 speed = 60/(MeanTime*0.000001*768) ;
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -400,11 +400,11 @@ void encoderSpeedReaderCycle() {
 		{
 			DiffTime[i]+=4294967295;
 		}
-		//Sum all 15 Diff
+		//Sum all 31 Diff
 		sum += DiffTime[i];
 	}
 
-	//mean all 15 Diff
+	//mean all 31 Diff
 	MeanTime =sum / (float)(CAPTURENUM-1);
 }
 
